@@ -1,5 +1,10 @@
 HELP.md
 .gradle
+gradlew
+gradlew.bat
+.gradle/
+gradle
+
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -245,7 +250,6 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear

@@ -1,4 +1,4 @@
-package com.mysettlement.jwt;
+package com.mysettlement.login;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,4 +1,4 @@
-package com.mysettlement.jwt;
+package com.mysettlement.login;
 
 import com.mysettlement.member.entity.Member;
 import com.mysettlement.member.entity.MemberRole;
@@ -9,10 +9,10 @@ import lombok.Getter;
 @Getter
 public class OAuth2UserDto {
 
-    private final String name;
-    private final String userName;
-    private final String email;
-    private final MemberRole memberRole;
+    private String name;
+    private String userName;
+    private MemberRole memberRole;
+    private String email;
 
     @Builder(access = AccessLevel.PRIVATE)
     private OAuth2UserDto(String name, String userName, String email, MemberRole memberRole) {
@@ -29,5 +29,10 @@ public class OAuth2UserDto {
                 .email(member.getEmail())
                 .memberRole(member.getMemberRole())
                 .build();
+    }
+
+    public OAuth2UserDto(String username, String role) {
+        this.userName = username;
+        this.memberRole = MemberRole.valueOf(role);
     }
 }

@@ -1,4 +1,4 @@
-package com.mysettlement.jwt;
+package com.mysettlement.login;
 
 public interface OAuth2ResponseDto {
 

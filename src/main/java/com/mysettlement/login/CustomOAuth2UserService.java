@@ -1,4 +1,4 @@
-package com.mysettlement.jwt;
+package com.mysettlement.login;
 
 import com.mysettlement.member.entity.Member;
 import com.mysettlement.member.repository.MemberRepository;

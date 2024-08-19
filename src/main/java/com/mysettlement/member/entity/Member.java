@@ -1,8 +1,10 @@
 package com.mysettlement.member.entity;
 
-import com.mysettlement.jwt.OAuth2ResponseDto;
+import com.mysettlement.login.OAuth2ResponseDto;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
@@ -37,7 +39,7 @@ public class Member {
                 .name(oAuth2ResponseDto.getName())
                 .username(oAuth2ResponseDto.getProvider() + " " + oAuth2ResponseDto.getProviderId())
                 .email(oAuth2ResponseDto.getEmail())
-                .memberRole(MemberRole.DEFAULT)
+                .memberRole(MemberRole.ROLE_DEFAULT)
                 .build();
     }
 }

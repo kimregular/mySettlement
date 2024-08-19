@@ -1,22 +1,24 @@
-package com.mysettlement.jwt;
-
-import lombok.RequiredArgsConstructor;
+package com.mysettlement.login;
 
 import java.util.Map;
 
-@RequiredArgsConstructor
-public class GoogleResponse implements OAuth2ResponseDto {
+
+public class NaverResponse implements OAuth2ResponseDto {
 
     private final Map<String, Object> attribute;
 
+    public NaverResponse(Map<String, Object> userAttrubutes) {
+        this.attribute = (Map<String, Object>) userAttrubutes.get("response");
+    }
+
     @Override
     public String getProvider() {
-        return "google";
+        return "naver";
     }
 
     @Override
     public String getProviderId() {
-        return attribute.get("sub").toString();
+        return attribute.get("id").toString();
     }
 
     @Override

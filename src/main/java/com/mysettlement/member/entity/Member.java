@@ -1,9 +1,7 @@
 package com.mysettlement.member.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import static lombok.AccessLevel.PROTECTED;
 

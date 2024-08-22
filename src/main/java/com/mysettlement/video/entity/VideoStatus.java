@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum VideoStatus {
 
-    ACTIVE("시청"),
+    AVAILABLE("시청"),
     ARCHIVED("보관"),
     DELETED("삭제");
 

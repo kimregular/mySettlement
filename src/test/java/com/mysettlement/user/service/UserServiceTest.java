@@ -13,13 +13,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-
-@SpringBootTest
 @ActiveProfiles("test")
+@Transactional
+@SpringBootTest
 class UserServiceTest {
 
     @Autowired
@@ -73,8 +74,19 @@ class UserServiceTest {
     }
 
     @Test
-    @DisplayName("유저 회원가입 테스트 - 중복")
+    @DisplayName("유저 회원가입 테스트 - 정상")
     void test3(){
+        // given
+        UserSigninRequestDto newUserRequest = new UserSigninRequestDto("newUser1", "email@test.com", "1234");
+        // when
+        UserResponseDto userResponseDto = userService.signinUser(newUserRequest);
+        // then
+        assertThat(userResponseDto.getName()).isEqualTo(newUserRequest.getName());
+    }
+
+    @Test
+    @DisplayName("유저 회원가입 테스트 - 중복")
+    void test4(){
         // given
         UserSigninRequestDto testUser = new UserSigninRequestDto(initUser.getName(), initUser.getEmail(), initUser.getPassword());
         // when
@@ -85,3 +97,4 @@ class UserServiceTest {
     }
 
 }
+

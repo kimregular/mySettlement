@@ -14,16 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
 
+    @Override
     public UserResponseDto findByUserName(String name) {
         User user = userRepository.findByName(name).orElseThrow(NoUserFoundException::new);
         return UserResponseDto.of(user);
     }
 
+    @Override
     public UserResponseDto signinUser(UserSigninRequestDto userSigninRequestDto) {
         if (isExistUser(userSigninRequestDto)) {
             throw new DuplicateUserException();

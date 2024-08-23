@@ -5,16 +5,16 @@ import org.springframework.http.HttpStatus;
 
 import static com.mysettlement.video.exception.VideoExceptionConstants.*;
 
-public class UploaderRoleRequiredException extends MySettlementException {
+public class NoVideoFoundException extends MySettlementException {
 
-    private static final String MESSAGE = UPLOADER_ROLE_REQUIRED_EXCEPTION.getMessage();
+    private static final String MESSAGE = NO_VIDEO_FOUND_EXCEPTION.getMessage();
 
-    public UploaderRoleRequiredException() {
+    public NoVideoFoundException() {
         super(MESSAGE);
     }
 
     @Override
     public HttpStatus getStatusCode() {
-        return UPLOADER_ROLE_REQUIRED_EXCEPTION.getStatus();
+        return NO_VIDEO_FOUND_EXCEPTION.getStatus();
     }
 }

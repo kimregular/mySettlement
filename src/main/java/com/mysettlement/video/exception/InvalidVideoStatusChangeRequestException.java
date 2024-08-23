@@ -7,11 +7,15 @@ import org.springframework.validation.FieldError;
 
 import static com.mysettlement.video.exception.VideoExceptionConstants.*;
 
-public class InvalidVideoUploadRequestException extends MySettlementException {
+public class InvalidVideoStatusChangeRequestException extends MySettlementException {
 
-    private static final String MESSAGE = INVALID_VIDEO_UPLOAD_EXCEPTION.getMessage();
+    private static final String MESSAGE = INVALID_VIDEO_STATUS_CHANGE_REQUEST_EXCEPTION.getMessage();
 
-    public InvalidVideoUploadRequestException(BindingResult errors) {
+    public InvalidVideoStatusChangeRequestException() {
+        super(MESSAGE);
+    }
+
+    public InvalidVideoStatusChangeRequestException(BindingResult errors) {
         super(MESSAGE);
         for (FieldError fieldError : errors.getFieldErrors()) {
             addValidation(fieldError.getField(), fieldError.getDefaultMessage());
@@ -20,6 +24,6 @@ public class InvalidVideoUploadRequestException extends MySettlementException {
 
     @Override
     public HttpStatus getStatusCode() {
-        return INVALID_VIDEO_UPLOAD_EXCEPTION.getStatus();
+        return INVALID_VIDEO_STATUS_CHANGE_REQUEST_EXCEPTION.getStatus();
     }
 }

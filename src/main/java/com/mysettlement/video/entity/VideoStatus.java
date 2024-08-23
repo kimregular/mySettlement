@@ -3,6 +3,8 @@ package com.mysettlement.video.entity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.EnumSet;
+
 @Getter
 @RequiredArgsConstructor
 public enum VideoStatus {
@@ -12,4 +14,10 @@ public enum VideoStatus {
     DELETED("삭제");
 
     private final String status;
+
+    private static final EnumSet<VideoStatus> ALL_STATUS = EnumSet.allOf(VideoStatus.class);
+
+    public static boolean isValidStatus(VideoStatus videoStatus) {
+        return ALL_STATUS.contains(videoStatus);
+    }
 }

@@ -1,6 +1,7 @@
 package com.mysettlement.video.entity;
 
 import com.mysettlement.user.entity.User;
+import com.mysettlement.video.request.VideoStatusChangeRequestDto;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,6 +23,7 @@ public class Video {
     private Long id;
 
     @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "video_title")
@@ -48,5 +50,9 @@ public class Video {
         this.videoView = videoView;
         this.videoPricePerView = videoPricePerView;
         this.videoStatus = videoStatus;
+    }
+
+    public void update(VideoStatusChangeRequestDto videoStatusChangeRequestDto) {
+        this.videoStatus = videoStatusChangeRequestDto.videoStatus();
     }
 }

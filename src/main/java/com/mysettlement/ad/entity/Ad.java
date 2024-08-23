@@ -1,5 +1,6 @@
 package com.mysettlement.ad.entity;
 
+import com.mysettlement.ad.request.AdUploadRequestDto;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +21,12 @@ public class Ad {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @Column(name = "ad_title")
+    private String adTitle;
+
+    @Column(name = "ad_desc")
+    private String adDesc;
+
     @Column(name = "ad_view")
     private long adView;
 
@@ -31,9 +38,21 @@ public class Ad {
     private double adPricePerView;
 
     @Builder
-    private Ad(long adView, AdStatus adStatus, double adPricePerView) {
+    private Ad(String adTitle, String adDesc, long adView, AdStatus adStatus, double adPricePerView) {
+        this.adTitle = adTitle;
+        this.adDesc = adDesc;
         this.adView = adView;
         this.adStatus = adStatus;
         this.adPricePerView = adPricePerView;
+    }
+
+    public static Ad of(AdUploadRequestDto adUploadRequestDto) {
+        return Ad.builder()
+                .adTitle(adUploadRequestDto.title())
+                .adDesc(adUploadRequestDto.desc())
+                .adView(0)
+                .adStatus(AdStatus.AVAILABLE)
+                .adPricePerView(1.5)
+                .build();
     }
 }

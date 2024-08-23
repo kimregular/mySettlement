@@ -3,28 +3,31 @@ package com.mysettlement.user.exception;
 import com.mysettlement.globalResponse.MySettlementGlobalErrorResponse;
 import com.mysettlement.user.controller.UserController;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import static com.mysettlement.user.exception.UserExceptionConstants.*;
 
 @Slf4j
 @RestControllerAdvice(assignableTypes = UserController.class)
 public class UserExceptionHandler {
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NoUserFoundException.class)
-    public MySettlementGlobalErrorResponse handleNoUserFoundException(NoUserFoundException e) {
-        return MySettlementGlobalErrorResponse.of(e);
+    public ResponseEntity<MySettlementGlobalErrorResponse> handleNoUserFoundException(NoUserFoundException e) {
+        return new ResponseEntity<>(MySettlementGlobalErrorResponse.of(e),
+                NO_USER_FOUND_EXCEPTION.getStatus());
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(InvalidSigninRequestException.class)
-    public MySettlementGlobalErrorResponse handleInvalidSigninRequestException(InvalidSigninRequestException e) {
-        return MySettlementGlobalErrorResponse.of(e);
+    public ResponseEntity<MySettlementGlobalErrorResponse> handleInvalidSigninRequestException(InvalidSigninRequestException e) {
+        return new ResponseEntity<>(MySettlementGlobalErrorResponse.of(e),
+                INVALID_SIGNININ_REQUEST_EXCEPTION.getStatus());
     }
 
-    @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(DuplicateUserException.class)
-    public MySettlementGlobalErrorResponse handleDuplicateUserException(DuplicateUserException e) {
-        return MySettlementGlobalErrorResponse.of(e);
+    public ResponseEntity<MySettlementGlobalErrorResponse> handleDuplicateUserException(DuplicateUserException e) {
+        return new ResponseEntity<>(MySettlementGlobalErrorResponse.of(e),
+                DUPLICATE_USER_EXCEPTION.getStatus());
     }
 }

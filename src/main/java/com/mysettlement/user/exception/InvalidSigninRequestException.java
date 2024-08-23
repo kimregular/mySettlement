@@ -5,9 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
+import static com.mysettlement.user.exception.UserExceptionConstants.*;
+
 public class InvalidSigninRequestException extends MySettlementException {
 
-    private static final String MESSAGE = "잘못된 회원가입 요청입니다.";
+    private static final String MESSAGE = INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage();
 
     public InvalidSigninRequestException(BindingResult errors) {
         super(MESSAGE);
@@ -18,6 +20,6 @@ public class InvalidSigninRequestException extends MySettlementException {
 
     @Override
     public HttpStatus getStatusCode() {
-        return HttpStatus.BAD_REQUEST;
+        return INVALID_SIGNININ_REQUEST_EXCEPTION.getStatus();
     }
 }

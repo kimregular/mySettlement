@@ -11,20 +11,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
+import static com.mysettlement.user.exception.UserExceptionConstants.DUPLICATE_USER_EXCEPTION;
+import static com.mysettlement.user.exception.UserExceptionConstants.NO_USER_FOUND_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+@DataJpaTest
+@Import(UserServiceImpl.class)
 @ActiveProfiles("test")
-@Transactional
-@SpringBootTest
 class UserServiceTest {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Autowired
     private UserRepository userRepository;
@@ -70,7 +72,7 @@ class UserServiceTest {
         // then
         assertThatThrownBy(() -> userService.findByUserName("NO"))
                 .isInstanceOf(NoUserFoundException.class)
-                .hasMessageContaining("없는 사용자입니다.");
+                .hasMessageContaining(NO_USER_FOUND_EXCEPTION.getMessage());
     }
 
     @Test
@@ -93,7 +95,7 @@ class UserServiceTest {
         // then
         assertThatThrownBy(() -> userService.signinUser(testUser))
                 .isInstanceOf(DuplicateUserException.class)
-                .hasMessageContaining("이미 존재하는 회원입니다.");
+                .hasMessageContaining(DUPLICATE_USER_EXCEPTION.getMessage());
     }
 
 }

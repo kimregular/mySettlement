@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserResponseDto signinUser(UserSigninRequestDto userSigninRequestDto) {
         if (isExistUser(userSigninRequestDto)) {
             throw new DuplicateUserException();

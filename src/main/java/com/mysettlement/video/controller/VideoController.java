@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/video")
@@ -37,5 +39,10 @@ public class VideoController {
     public MySettlementGlobalResponse<VideoResponseDto> changeVideoStatus(@PathVariable Long videoId, @Valid @RequestBody VideoStatusChangeRequestDto videoStatusChangeRequestDto, BindingResult errors) {
         if (errors.hasErrors()) throw new InvalidVideoUpdateRequestException(errors);
         return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.chageStatus(videoId, videoStatusChangeRequestDto));
+    }
+
+    @GetMapping("/{username}/videos")
+    public MySettlementGlobalResponse<List<VideoResponseDto>> findVideosOf(@PathVariable String username) {
+        return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.findVideosOf(username));
     }
 }

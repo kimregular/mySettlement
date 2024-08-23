@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static com.mysettlement.video.entity.VideoStatus.AVAILABLE;
 import static com.mysettlement.video.entity.VideoStatus.isValidStatus;
 
@@ -74,6 +76,12 @@ public class VideoServiceImpl implements VideoService {
 
         foundVideo.update(videoUpdateRequestDto);
         return VideoResponseDto.of(foundVideo);
+    }
+
+    @Override
+    public List<VideoResponseDto> findVideosOf(String username) {
+        User foundUser = userRepository.findByName(username).orElseThrow(NoUserFoundException::new);
+        return videoRepository.findAllByUserId(foundUser.getId()).stream().filter(video -> video.getVideoStatus() == AVAILABLE).map(VideoResponseDto::of).toList();
     }
 
     private boolean isNotUploader(User user) {

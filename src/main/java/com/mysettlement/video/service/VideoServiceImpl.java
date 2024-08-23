@@ -5,11 +5,12 @@ import com.mysettlement.user.entity.UserRole;
 import com.mysettlement.user.exception.NoUserFoundException;
 import com.mysettlement.user.repository.UserRepository;
 import com.mysettlement.video.entity.Video;
-import com.mysettlement.video.exception.InvalidVideoStatusChangeRequestException;
+import com.mysettlement.video.exception.InvalidVideoUpdateRequestException;
 import com.mysettlement.video.exception.NoVideoFoundException;
 import com.mysettlement.video.exception.UploaderRoleRequiredException;
 import com.mysettlement.video.repository.VideoRepository;
 import com.mysettlement.video.request.VideoStatusChangeRequestDto;
+import com.mysettlement.video.request.VideoUpdateRequestDto;
 import com.mysettlement.video.request.VideoUploadRequestDto;
 import com.mysettlement.video.response.VideoResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -53,9 +54,25 @@ public class VideoServiceImpl implements VideoService {
     @Transactional
     public VideoResponseDto chageStatus(Long videoId, VideoStatusChangeRequestDto videoStatusChangeRequestDto) {
         if(!isValidStatus(videoStatusChangeRequestDto.videoStatus()))
-            throw new InvalidVideoStatusChangeRequestException();
+            throw new InvalidVideoUpdateRequestException();
         Video foundVideo = videoRepository.findById(videoId).orElseThrow(NoVideoFoundException::new);
         foundVideo.update(videoStatusChangeRequestDto);
+        return VideoResponseDto.of(foundVideo);
+    }
+
+    @Override
+    @Transactional
+    public VideoResponseDto update(Long videoId, VideoUpdateRequestDto videoUpdateRequestDto) {
+        // 유저 조회
+        User foundUser = userRepository.findByEmail(videoUpdateRequestDto.email()).orElseThrow(NoUserFoundException::new);
+
+        // 비디오 확인
+        Video foundVideo = videoRepository.findById(videoId).orElseThrow(NoVideoFoundException::new);
+
+        // 주인 확인
+        if(foundUser.getId() != foundVideo.getUser().getId()) throw new InvalidVideoUpdateRequestException();
+
+        foundVideo.update(videoUpdateRequestDto);
         return VideoResponseDto.of(foundVideo);
     }
 

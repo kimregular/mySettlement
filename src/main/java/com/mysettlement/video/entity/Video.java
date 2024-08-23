@@ -2,6 +2,8 @@ package com.mysettlement.video.entity;
 
 import com.mysettlement.user.entity.User;
 import com.mysettlement.video.request.VideoStatusChangeRequestDto;
+import com.mysettlement.video.request.VideoUpdateRequestDto;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,6 +31,7 @@ public class Video {
     @Column(name = "video_title")
     private String videoTitle;
 
+    @Nullable
     @Column(name = "video_desc")
     private String videoDesc;
 
@@ -43,7 +46,7 @@ public class Video {
     private VideoStatus videoStatus;
 
     @Builder
-    private Video(User user, String videoTitle, String videoDesc, long videoView, double videoPricePerView, VideoStatus videoStatus) {
+    private Video(User user, String videoTitle, @Nullable String videoDesc, long videoView, double videoPricePerView, VideoStatus videoStatus) {
         this.user = user;
         this.videoTitle = videoTitle;
         this.videoDesc = videoDesc;
@@ -54,5 +57,10 @@ public class Video {
 
     public void update(VideoStatusChangeRequestDto videoStatusChangeRequestDto) {
         this.videoStatus = videoStatusChangeRequestDto.videoStatus();
+    }
+
+    public void update(VideoUpdateRequestDto videoUpdateRequestDto) {
+        this.videoTitle = videoUpdateRequestDto.title();
+        this.videoDesc = videoUpdateRequestDto.desc();
     }
 }

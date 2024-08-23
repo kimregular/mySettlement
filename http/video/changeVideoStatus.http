@@ -1,5 +1,5 @@
 ### 비디오 상태 변경 - ARCHIVED
-PUT localhost:8080/api/video/1
+PATCH localhost:8080/api/video/1/status
 Content-Type: application/json
 
 {
@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ### 비디오 상태 변경 - DELETE
-PUT localhost:8080/api/video/1
+PATCH localhost:8080/api/video/1/status
 Content-Type: application/json
 
 {
@@ -15,7 +15,7 @@ Content-Type: application/json
 }
 
 ### 비디오 상태 변경 - 정의되지 않은 상태
-PUT localhost:8080/api/video/1
+PATCH localhost:8080/api/video/1/status
 Content-Type: application/json
 
 {
@@ -23,7 +23,7 @@ Content-Type: application/json
 }
 
 ### 비디오 상태 변경 - 상태값 공란
-PUT localhost:8080/api/video/1
+PATCH localhost:8080/api/video/1/status
 Content-Type: application/json
 
 {
@@ -31,9 +31,8 @@ Content-Type: application/json
 }
 
 ### 비디오 상태 변경 - 상태값 누락
-PUT localhost:8080/api/video/1
+PATCH localhost:8080/api/video/1/status
 Content-Type: application/json
 
 {
-
 }

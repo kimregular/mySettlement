@@ -16,4 +16,8 @@ public class MySettlementGlobalResponse<T> {
     public static <T> MySettlementGlobalResponse<T> of(HttpStatus status, T data) {
         return new MySettlementGlobalResponse<>(status.value(), data);
     }
+
+    public static <T> MySettlementGlobalResponse<T> success(T data) {
+        return new MySettlementGlobalResponse<>(HttpStatus.OK.value(), data);
+    }
 }

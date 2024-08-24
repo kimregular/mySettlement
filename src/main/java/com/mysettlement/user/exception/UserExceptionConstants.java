@@ -11,7 +11,7 @@ public enum UserExceptionConstants {
     NO_USER_FOUND_EXCEPTION("없는 사용자입니다.", HttpStatus.NOT_FOUND),
     INVALID_SIGNININ_REQUEST_EXCEPTION("잘못된 회원가입 요청입니다.", HttpStatus.BAD_REQUEST),
     DUPLICATE_USER_EXCEPTION("이미 존재하는 회원입니다.", HttpStatus.CONFLICT),
-    INVALID_USER_UPDATE_REQEUST_EXCEPTION("유효하지 않은 업데이트 요청입니다.", HttpStatus.BAD_REQUEST),
+    INVALID_USER_UPDATE_REQUEST_EXCEPTION("유효하지 않은 업데이트 요청입니다.", HttpStatus.BAD_REQUEST),
     ;
 
     private final String message;

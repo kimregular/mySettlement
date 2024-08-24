@@ -40,14 +40,7 @@ public class VideoServiceImpl implements VideoService {
             throw new DefaultRoleRequiredException();
         }
 
-        Video newVideo = Video.builder()
-                .videoTitle(videoUploadRequestDto.title())
-                .user(foundUser)
-                .videoDesc(videoUploadRequestDto.desc())
-                .videoStatus(AVAILABLE)
-                .videoView(0)
-                .videoPricePerView(1.0)
-                .build();
+        Video newVideo = Video.of(foundUser, videoUploadRequestDto);
         videoRepository.save(newVideo);
         return VideoResponseDto.of(newVideo);
     }

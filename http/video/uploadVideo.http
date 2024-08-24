@@ -6,7 +6,8 @@ POST localhost:8080/api/video/{{default}}
 Content-Type: application/json
 
 {
-  "title": "testVideo",
+  "title": "testVideo999",
+  "videoLength" : 3600,
   "desc": "new video upload test"
 }
 
@@ -16,6 +17,7 @@ Content-Type: application/json
 
 {
   "title": "testVideo",
+  "videoLength" : 5666,
   "desc": "new video upload test"
 }
 
@@ -25,5 +27,6 @@ Content-Type: application/json
 
 {
   "title": "testVideo",
+  "videoLnegth": 63213,
   "desc": "new video upload test"
 }

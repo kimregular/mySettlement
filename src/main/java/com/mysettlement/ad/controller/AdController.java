@@ -3,6 +3,7 @@ package com.mysettlement.ad.controller;
 import com.mysettlement.ad.exception.InvalidAdUpdateRequestException;
 import com.mysettlement.ad.exception.InvalidAdUploadRequestException;
 import com.mysettlement.ad.request.AdStatusUpdateReqeustDto;
+import com.mysettlement.ad.request.AdUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUploadRequestDto;
 import com.mysettlement.ad.response.AdResponseDto;
 import com.mysettlement.ad.service.AdService;
@@ -27,7 +28,7 @@ public class AdController {
 
     @PostMapping
     public MySettlementGlobalResponse<AdResponseDto> uploadAd(@Valid @RequestBody AdUploadRequestDto adUploadRequestDto, BindingResult errors) {
-        if(errors.hasErrors()) throw new InvalidAdUploadRequestException(errors);
+        if (errors.hasErrors()) throw new InvalidAdUploadRequestException(errors);
         return MySettlementGlobalResponse.of(HttpStatus.OK, adService.uploadAd(adUploadRequestDto));
     }
 
@@ -35,7 +36,15 @@ public class AdController {
     public MySettlementGlobalResponse<AdResponseDto> updateAd(@PathVariable Long adId,
                                                               @Valid @RequestBody AdStatusUpdateReqeustDto adStatusUpdateReqeustDto,
                                                               BindingResult errors) {
-        if(errors.hasErrors()) throw new InvalidAdUpdateRequestException(errors);
+        if (errors.hasErrors()) throw new InvalidAdUpdateRequestException(errors);
         return MySettlementGlobalResponse.success(adService.changeStatus(adId, adStatusUpdateReqeustDto));
+    }
+
+    @PatchMapping("/{adId}/info")
+    public MySettlementGlobalResponse<AdResponseDto> updateAd(@PathVariable Long adId,
+                                                              @Valid @RequestBody AdUpdateReqeustDto adUpdateReqeustDto,
+                                                              BindingResult errors) {
+        if(errors.hasErrors()) throw new InvalidAdUploadRequestException(errors);
+        return MySettlementGlobalResponse.success(adService.changeInfo(adId, adUpdateReqeustDto));
     }
 }

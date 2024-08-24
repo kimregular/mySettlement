@@ -5,6 +5,7 @@ import com.mysettlement.ad.exception.InvalidAdUpdateRequestException;
 import com.mysettlement.ad.exception.NoAdFoundException;
 import com.mysettlement.ad.repository.AdRepository;
 import com.mysettlement.ad.request.AdStatusUpdateReqeustDto;
+import com.mysettlement.ad.request.AdUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUploadRequestDto;
 import com.mysettlement.ad.response.AdResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,14 @@ public class AdServiceImpl implements AdService {
         }
         Ad foundAd = adRepository.findById(adId).orElseThrow(NoAdFoundException::new);
         foundAd.update(adStatusUpdateReqeustDto);
+        return AdResponseDto.of(foundAd);
+    }
+
+    @Override
+    @Transactional
+    public AdResponseDto changeInfo(Long adId, AdUpdateReqeustDto adUpdateReqeustDto) {
+        Ad foundAd = adRepository.findById(adId).orElseThrow(NoAdFoundException::new);
+        foundAd.update(adUpdateReqeustDto);
         return AdResponseDto.of(foundAd);
     }
 }

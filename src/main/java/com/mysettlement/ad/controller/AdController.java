@@ -18,11 +18,14 @@ public class AdController {
 
     private final AdService adService;
 
+    @GetMapping("/{adId}")
+    public MySettlementGlobalResponse<AdResponseDto> searchAdWith(@PathVariable Long adId) {
+        return MySettlementGlobalResponse.success(adService.findAdById(adId));
+    }
+
     @PostMapping
     public MySettlementGlobalResponse<AdResponseDto> uploadAd(@Valid @RequestBody AdUploadRequestDto adUploadRequestDto, BindingResult errors) {
-        if(errors.hasErrors()) {
-            throw new InvalidAdUploadRequestException(errors);
-        }
+        if(errors.hasErrors()) throw new InvalidAdUploadRequestException(errors);
         return MySettlementGlobalResponse.of(HttpStatus.OK, adService.uploadAd(adUploadRequestDto));
     }
 }

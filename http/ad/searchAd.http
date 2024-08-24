@@ -1,0 +1,10 @@
+@adId = 1
+@noExistAd = -1
+
+### 광고 검색 - 정상
+GET localhost:8080/api/ad/{{adId}}
+Content-Type: application/json
+
+### 광고 검색 - 실패
+GET localhost:8080/api/ad/{{noExistAd}}
+Content-Type: application/json

@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.mysettlement.user.entity.UserRole.GUEST;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -36,10 +38,18 @@ public class UserServiceImpl implements UserService {
                 .name(userSigninRequestDto.getName())
                 .email(userSigninRequestDto.getEmail())
                 .password(userSigninRequestDto.getPassword())
-                .userRole(UserRole.GUEST)
+                .userRole(GUEST)
                 .build();
         userRepository.save(newUser);
         return UserResponseDto.of(newUser);
+    }
+
+    @Override
+    @Transactional
+    public UserResponseDto changeUserStatus(Long userId, UserRole userRole) {
+        User foundUser = userRepository.findById(userId).orElseThrow(NoUserFoundException::new);
+        foundUser.update(userRole);
+        return UserResponseDto.of(foundUser);
     }
 
     private boolean isExistUser(UserSigninRequestDto userSigninRequestDto) {

@@ -32,7 +32,9 @@ public class VideoController {
     }
 
     @PatchMapping("/{videoId}")
-    public MySettlementGlobalResponse<VideoResponseDto> updateVideo(@PathVariable Long videoId, @Valid @RequestBody VideoUpdateRequestDto videoUpdateRequestDto, BindingResult errors) {
+    public MySettlementGlobalResponse<VideoResponseDto> updateVideo(@PathVariable Long videoId,
+                                                                    @Valid @RequestBody VideoUpdateRequestDto videoUpdateRequestDto,
+                                                                    BindingResult errors) {
         if(errors.hasErrors()) throw new InvalidVideoUpdateRequestException(errors);
         return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.update(videoId, videoUpdateRequestDto));
     }
@@ -44,7 +46,7 @@ public class VideoController {
     }
 
     @GetMapping("/{username}/videos")
-    public MySettlementGlobalResponse<List<VideoResponseDto>> findVideosOf(@PathVariable String username) {
-        return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.findVideosOf(username));
+    public MySettlementGlobalResponse<List<VideoResponseDto>> searchVideosOf(@PathVariable String username) {
+        return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.searchVideosOf(username));
     }
 }

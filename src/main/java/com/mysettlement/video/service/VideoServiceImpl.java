@@ -72,7 +72,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<VideoResponseDto> findVideosOf(String username) {
+    public List<VideoResponseDto> searchVideosOf(String username) {
         User foundUser = userRepository.findByName(username).orElseThrow(NoUserFoundException::new);
         return videoRepository.findAllByUserId(foundUser.getId()).stream().filter(video -> video.getVideoStatus() == AVAILABLE).map(VideoResponseDto::of).toList();
     }

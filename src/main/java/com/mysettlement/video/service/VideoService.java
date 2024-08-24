@@ -15,5 +15,5 @@ public interface VideoService {
 
     VideoResponseDto update(Long videoId, VideoUpdateRequestDto videoUpdateRequestDto);
 
-    List<VideoResponseDto> findVideosOf(String username);
+    List<VideoResponseDto> searchVideosOf(String username);
 }

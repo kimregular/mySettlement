@@ -31,7 +31,7 @@ public class AdController {
         return MySettlementGlobalResponse.of(HttpStatus.OK, adService.uploadAd(adUploadRequestDto));
     }
 
-    @PatchMapping("/{adId}")
+    @PatchMapping("/{adId}/status")
     public MySettlementGlobalResponse<AdResponseDto> updateAd(@PathVariable Long adId,
                                                               @Valid @RequestBody AdStatusUpdateReqeustDto adStatusUpdateReqeustDto,
                                                               BindingResult errors) {

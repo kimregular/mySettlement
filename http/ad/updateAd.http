@@ -2,7 +2,7 @@
 @noExist = -1
 
 ### 광고 상태 업데이트
-PATCH localhost:8080/api/ad/{{adId}}
+PATCH localhost:8080/api/ad/{{adId}}/status
 Content-Type: application/json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### 광고 상태 업데이트 - 실패 - 없는 상태
-PATCH localhost:8080/api/ad/{{adId}}
+PATCH localhost:8080/api/ad/{{adId}}/status
 Content-Type: application/json
 
 {
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ### 광고 상태 업데이트 - 실패 - 없는 아이디
-PATCH localhost:8080/api/ad/{{noExist}}
+PATCH localhost:8080/api/ad/{{noExist}}/status
 Content-Type: application/json
 
 {

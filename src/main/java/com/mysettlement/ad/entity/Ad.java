@@ -3,13 +3,12 @@ package com.mysettlement.ad.entity;
 import com.mysettlement.ad.request.AdStatusUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUploadRequestDto;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import static jakarta.persistence.EnumType.*;
+import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -27,7 +26,6 @@ public class Ad {
     @Column(name = "ad_title")
     private String adTitle;
 
-    @Nullable
     @Column(name = "ad_desc")
     private String adDesc;
 

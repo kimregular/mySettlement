@@ -4,7 +4,6 @@ import com.mysettlement.user.entity.User;
 import com.mysettlement.video.request.VideoStatusChangeRequestDto;
 import com.mysettlement.video.request.VideoUpdateRequestDto;
 import com.mysettlement.video.request.VideoUploadRequestDto;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,7 +34,6 @@ public class Video {
     @Column(name = "video_length")
     private long videoLength;
 
-    @Nullable
     @Column(name = "video_desc")
     private String videoDesc;
 
@@ -50,7 +48,7 @@ public class Video {
     private VideoStatus videoStatus;
 
     @Builder
-    public Video(User user, String videoTitle, long videoLength, @Nullable String videoDesc) {
+    public Video(User user, String videoTitle, long videoLength,  String videoDesc) {
         this.user = user;
         this.videoTitle = videoTitle;
         this.videoLength = videoLength;

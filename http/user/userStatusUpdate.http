@@ -1,0 +1,8 @@
+### 유저 상태 업데이트 - 정상
+@userId =1
+PATCH localhost:8080/api/user/{{userId}}
+Content-Type: application/json
+
+{
+  "userRole" : "DEFAULT"
+}

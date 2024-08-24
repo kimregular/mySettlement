@@ -3,7 +3,6 @@ package com.mysettlement.user.controller;
 import com.mysettlement.globalResponse.MySettlementGlobalResponse;
 import com.mysettlement.user.entity.UserRole;
 import com.mysettlement.user.exception.InvalidSigninRequestException;
-import com.mysettlement.user.exception.InvalidUserUpdateReqeustException;
 import com.mysettlement.user.request.UserSigninRequestDto;
 import com.mysettlement.user.response.UserResponseDto;
 import com.mysettlement.user.service.UserService;
@@ -34,9 +33,7 @@ public class UserController {
     }
 
     @PatchMapping("/{userId}")
-    public MySettlementGlobalResponse<UserResponseDto> changeUserStatue(@PathVariable Long userId,
-                                                                        BindingResult errors) {
-        if (errors.hasErrors()) throw new InvalidUserUpdateReqeustException(errors);
+    public MySettlementGlobalResponse<UserResponseDto> changeUserStatue(@PathVariable Long userId) {
         return MySettlementGlobalResponse.success(userService.changeUserStatus(userId, UserRole.DEFAULT));
     }
 

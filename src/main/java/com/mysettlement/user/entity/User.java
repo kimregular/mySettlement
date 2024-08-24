@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import static jakarta.persistence.EnumType.*;
+import static jakarta.persistence.EnumType.STRING;
 import static jakarta.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -33,6 +33,10 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.userRole = userRole;
+    }
+
+    public void update(UserRole userRole) {
         this.userRole = userRole;
     }
 }

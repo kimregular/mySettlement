@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface VideoService {
 
-    VideoResponseDto uploadVideo(VideoUploadRequestDto videoUploadRequestDto);
+    VideoResponseDto uploadVideo(Long userId, VideoUploadRequestDto videoUploadRequestDto);
 
     VideoResponseDto chageStatus(Long videoId, VideoStatusChangeRequestDto videoStatusChangeRequestDto);
 

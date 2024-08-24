@@ -1,29 +1,29 @@
+@default = 1
+@guest = 2
+
 ### 비디오 업로드 - 정상
-POST localhost:8080/api/video
+POST localhost:8080/api/video/{{default}}
 Content-Type: application/json
 
 {
   "title": "testVideo",
-  "desc": "new video upload test",
-  "userEmail": "regular@test.com"
+  "desc": "new video upload test"
 }
 
-### 비디오 업로드 - 유저가 업로더가 아님
-POST localhost:8080/api/video
+### 비디오 업로드 - 유저가 기본상태가 아님
+POST localhost:8080/api/video/{{guest}}
 Content-Type: application/json
 
 {
   "title": "testVideo",
-  "desc": "new video upload test",
-  "userEmail": "park@test.com"
+  "desc": "new video upload test"
 }
 
 ### 비디오 업로드 - 존재하지 않는 유저
-POST localhost:8080/api/video
+POST localhost:8080/api/video/-1
 Content-Type: application/json
 
 {
   "title": "testVideo",
-  "desc": "new video upload test",
-  "userEmail": "noexist@test.com"
+  "desc": "new video upload test"
 }

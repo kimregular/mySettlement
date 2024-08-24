@@ -23,10 +23,12 @@ public class VideoController {
 
     private final VideoService videoService;
 
-    @PostMapping
-    public MySettlementGlobalResponse<VideoResponseDto> uploadVideo(@Valid @RequestBody VideoUploadRequestDto videoUploadRequestDto, BindingResult errors) {
+    @PostMapping("/{userId}")
+    public MySettlementGlobalResponse<VideoResponseDto> uploadVideo(@PathVariable Long userId,
+                                                                    @Valid @RequestBody VideoUploadRequestDto videoUploadRequestDto,
+                                                                    BindingResult errors) {
         if(errors.hasErrors()) throw new InvalidVideoUploadRequestException(errors);
-        return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.uploadVideo(videoUploadRequestDto));
+        return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.uploadVideo(userId, videoUploadRequestDto));
     }
 
     @PatchMapping("/{videoId}")

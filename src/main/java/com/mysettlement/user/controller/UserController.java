@@ -1,14 +1,15 @@
 package com.mysettlement.user.controller;
 
 import com.mysettlement.globalResponse.MySettlementGlobalResponse;
+import com.mysettlement.user.entity.UserRole;
 import com.mysettlement.user.exception.InvalidSigninRequestException;
+import com.mysettlement.user.exception.InvalidUserUpdateReqeustException;
 import com.mysettlement.user.request.UserSigninRequestDto;
 import com.mysettlement.user.response.UserResponseDto;
 import com.mysettlement.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,11 +25,19 @@ public class UserController {
     @PostMapping
     public MySettlementGlobalResponse<UserResponseDto> signsin(@RequestBody @Valid UserSigninRequestDto userSigninRequestDto, BindingResult errors) {
         if(errors.hasErrors()) throw new InvalidSigninRequestException(errors);
-        return MySettlementGlobalResponse.of(HttpStatus.OK, userService.signinUser(userSigninRequestDto));
+        return MySettlementGlobalResponse.success(userService.signinUser(userSigninRequestDto));
     }
 
     @GetMapping("/{username}")
     public MySettlementGlobalResponse<UserResponseDto> findUser(@PathVariable String username) {
-        return MySettlementGlobalResponse.of(HttpStatus.OK, userService.findByUserName(username));
+        return MySettlementGlobalResponse.success(userService.findByUserName(username));
     }
+
+    @PatchMapping("/{userId}")
+    public MySettlementGlobalResponse<UserResponseDto> changeUserStatue(@PathVariable Long userId,
+                                                                        BindingResult errors) {
+        if (errors.hasErrors()) throw new InvalidUserUpdateReqeustException(errors);
+        return MySettlementGlobalResponse.success(userService.changeUserStatus(userId, UserRole.DEFAULT));
+    }
+
 }

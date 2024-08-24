@@ -1,13 +1,12 @@
 package com.mysettlement.video.service;
 
 import com.mysettlement.user.entity.User;
-import com.mysettlement.user.entity.UserRole;
 import com.mysettlement.user.exception.NoUserFoundException;
 import com.mysettlement.user.repository.UserRepository;
 import com.mysettlement.video.entity.Video;
 import com.mysettlement.video.exception.InvalidVideoUpdateRequestException;
 import com.mysettlement.video.exception.NoVideoFoundException;
-import com.mysettlement.video.exception.UploaderRoleRequiredException;
+import com.mysettlement.video.exception.DefaultRoleRequiredException;
 import com.mysettlement.video.repository.VideoRepository;
 import com.mysettlement.video.request.VideoStatusChangeRequestDto;
 import com.mysettlement.video.request.VideoUpdateRequestDto;
@@ -19,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.mysettlement.user.entity.UserRole.GUEST;
 import static com.mysettlement.video.entity.VideoStatus.AVAILABLE;
 import static com.mysettlement.video.entity.VideoStatus.isValidStatus;
 
@@ -32,12 +32,12 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     @Transactional
-    public VideoResponseDto uploadVideo(VideoUploadRequestDto videoUploadRequestDto) {
+    public VideoResponseDto uploadVideo(Long userId, VideoUploadRequestDto videoUploadRequestDto) {
         // 유저 가입 여부 확인
-        User foundUser = userRepository.findByEmail(videoUploadRequestDto.userEmail()).orElseThrow(NoUserFoundException::new);
+        User foundUser = userRepository.findById(userId).orElseThrow(NoUserFoundException::new);
         // 유저 자격 확인
-        if (isNotUploader(foundUser)) {
-            throw new UploaderRoleRequiredException();
+        if (isGuest(foundUser)) {
+            throw new DefaultRoleRequiredException();
         }
 
         Video newVideo = Video.builder()
@@ -84,7 +84,7 @@ public class VideoServiceImpl implements VideoService {
         return videoRepository.findAllByUserId(foundUser.getId()).stream().filter(video -> video.getVideoStatus() == AVAILABLE).map(VideoResponseDto::of).toList();
     }
 
-    private boolean isNotUploader(User user) {
-        return user.getUserRole() != UserRole.UPLOADER;
+    private boolean isGuest(User user) {
+        return user.getUserRole() == GUEST;
     }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 
 import static com.mysettlement.user.entity.UserRole.GUEST;
 import static com.mysettlement.video.entity.VideoStatus.AVAILABLE;
-import static com.mysettlement.video.entity.VideoStatus.isValidStatus;
+import static com.mysettlement.video.entity.VideoStatus.isAvailableStatus;
 
 @Service
 @RequiredArgsConstructor
@@ -48,7 +48,7 @@ public class VideoServiceImpl implements VideoService {
     @Override
     @Transactional
     public VideoResponseDto chageStatus(Long videoId, VideoStatusChangeRequestDto videoStatusChangeRequestDto) {
-        if(!isValidStatus(videoStatusChangeRequestDto.videoStatus()))
+        if(!isAvailableStatus(videoStatusChangeRequestDto.videoStatus()))
             throw new InvalidVideoUpdateRequestException();
         Video foundVideo = videoRepository.findById(videoId).orElseThrow(NoVideoFoundException::new);
         foundVideo.update(videoStatusChangeRequestDto);

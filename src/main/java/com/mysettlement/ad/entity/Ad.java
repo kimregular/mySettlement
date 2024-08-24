@@ -1,7 +1,9 @@
 package com.mysettlement.ad.entity;
 
 import com.mysettlement.ad.request.AdStatusUpdateReqeustDto;
+import com.mysettlement.ad.request.AdUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUploadRequestDto;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,6 +27,7 @@ public class Ad {
     @Column(name = "ad_title")
     private String adTitle;
 
+    @Nullable
     @Column(name = "ad_desc")
     private String adDesc;
 
@@ -59,5 +62,10 @@ public class Ad {
 
     public void update(AdStatusUpdateReqeustDto adStatusUpdateReqeustDto) {
         this.adStatus = adStatusUpdateReqeustDto.adStatus();
+    }
+
+    public void update(AdUpdateReqeustDto adUpdateReqeustDto) {
+        this.adTitle = adUpdateReqeustDto.title();
+        this.adDesc = adUpdateReqeustDto.desc();
     }
 }

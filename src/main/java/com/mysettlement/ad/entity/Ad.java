@@ -1,5 +1,6 @@
 package com.mysettlement.ad.entity;
 
+import com.mysettlement.ad.request.AdStatusUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUploadRequestDto;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -54,5 +55,9 @@ public class Ad {
                 .adStatus(AdStatus.AVAILABLE)
                 .adPricePerView(1.5)
                 .build();
+    }
+
+    public void update(AdStatusUpdateReqeustDto adStatusUpdateReqeustDto) {
+        this.adStatus = adStatusUpdateReqeustDto.adStatus();
     }
 }

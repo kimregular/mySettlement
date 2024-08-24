@@ -40,7 +40,9 @@ public class VideoController {
     }
 
     @PatchMapping("/{videoId}/status")
-    public MySettlementGlobalResponse<VideoResponseDto> changeVideoStatus(@PathVariable Long videoId, @Valid @RequestBody VideoStatusChangeRequestDto videoStatusChangeRequestDto, BindingResult errors) {
+    public MySettlementGlobalResponse<VideoResponseDto> changeVideoStatus(@PathVariable Long videoId,
+                                                                          @Valid @RequestBody VideoStatusChangeRequestDto videoStatusChangeRequestDto,
+                                                                          BindingResult errors) {
         if (errors.hasErrors()) throw new InvalidVideoUpdateRequestException(errors);
         return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.chageStatus(videoId, videoStatusChangeRequestDto));
     }

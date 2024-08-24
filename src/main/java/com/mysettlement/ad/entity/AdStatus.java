@@ -21,5 +21,4 @@ public enum AdStatus {
     public static boolean isAvailableStatus(AdStatus adStatus) {
         return ALL_STATUS.contains(adStatus);
     }
-
 }

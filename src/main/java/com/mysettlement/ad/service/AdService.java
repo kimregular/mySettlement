@@ -1,5 +1,6 @@
 package com.mysettlement.ad.service;
 
+import com.mysettlement.ad.request.AdStatusUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUploadRequestDto;
 import com.mysettlement.ad.response.AdResponseDto;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,4 +12,7 @@ public interface AdService {
     AdResponseDto uploadAd(AdUploadRequestDto adUploadRequestDto);
 
     AdResponseDto findAdById(Long adId);
+
+    @Transactional
+    AdResponseDto changeStatus(Long adId, AdStatusUpdateReqeustDto adStatusUpdateReqeustDto);
 }

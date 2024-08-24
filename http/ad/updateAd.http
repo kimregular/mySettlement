@@ -1,0 +1,26 @@
+@adId = 1
+@noExist = -1
+
+### 광고 상태 업데이트
+PATCH localhost:8080/api/ad/{{adId}}
+Content-Type: application/json
+
+{
+  "adStatus" : "ARCHIVED"
+}
+
+### 광고 상태 업데이트 - 실패 - 없는 상태
+PATCH localhost:8080/api/ad/{{adId}}
+Content-Type: application/json
+
+{
+  "adStatus" : "ERROR_STATUS"
+}
+
+### 광고 상태 업데이트 - 실패 - 없는 아이디
+PATCH localhost:8080/api/ad/{{noExist}}
+Content-Type: application/json
+
+{
+  "adStatus" : "ARCHIVED"
+}

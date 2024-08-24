@@ -3,14 +3,15 @@ package com.mysettlement.video.entity;
 import com.mysettlement.user.entity.User;
 import com.mysettlement.video.request.VideoStatusChangeRequestDto;
 import com.mysettlement.video.request.VideoUpdateRequestDto;
+import com.mysettlement.video.request.VideoUploadRequestDto;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import static jakarta.persistence.EnumType.*;
-import static jakarta.persistence.FetchType.*;
+import static jakarta.persistence.EnumType.STRING;
+import static jakarta.persistence.FetchType.LAZY;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
@@ -31,6 +32,9 @@ public class Video {
     @Column(name = "video_title")
     private String videoTitle;
 
+    @Column(name = "video_length")
+    private long videoLength;
+
     @Nullable
     @Column(name = "video_desc")
     private String videoDesc;
@@ -46,13 +50,24 @@ public class Video {
     private VideoStatus videoStatus;
 
     @Builder
-    private Video(User user, String videoTitle, @Nullable String videoDesc, long videoView, double videoPricePerView, VideoStatus videoStatus) {
+    public Video(User user, String videoTitle, long videoLength, @Nullable String videoDesc) {
         this.user = user;
         this.videoTitle = videoTitle;
+        this.videoLength = videoLength;
         this.videoDesc = videoDesc;
-        this.videoView = videoView;
-        this.videoPricePerView = videoPricePerView;
-        this.videoStatus = videoStatus;
+        this.videoView = 0;
+        this.videoPricePerView = 1.0;
+        this.videoStatus = VideoStatus.AVAILABLE;
+    }
+
+    public static Video of(User user, VideoUploadRequestDto videoUploadRequestDto) {
+        return Video.builder()
+                .videoTitle(videoUploadRequestDto.title())
+                .videoLength(videoUploadRequestDto.videoLength())
+                .user(user)
+                .videoDesc(videoUploadRequestDto.desc())
+                .build();
+
     }
 
     public void update(VideoStatusChangeRequestDto videoStatusChangeRequestDto) {

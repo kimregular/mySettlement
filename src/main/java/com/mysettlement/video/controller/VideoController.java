@@ -31,7 +31,7 @@ public class VideoController {
         return MySettlementGlobalResponse.of(HttpStatus.OK, videoService.uploadVideo(userId, videoUploadRequestDto));
     }
 
-    @PatchMapping("/{videoId}")
+    @PatchMapping("/{videoId}/info")
     public MySettlementGlobalResponse<VideoResponseDto> updateVideo(@PathVariable Long videoId,
                                                                     @Valid @RequestBody VideoUpdateRequestDto videoUpdateRequestDto,
                                                                     BindingResult errors) {

@@ -18,12 +18,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/video/v1")
+@RequestMapping("/api/v1/video")
 public class VideoController {
 
     private final VideoService videoService;
 
-    @PostMapping("/{userId}")
+    @PostMapping("/{userId}/videos")
     public MySettlementGlobalResponse<VideoResponseDto> uploadVideo(@PathVariable Long userId,
                                                                     @Valid @RequestBody VideoUploadRequestDto videoUploadRequestDto,
                                                                     BindingResult errors) {

@@ -2,7 +2,7 @@
 @noExist = -1
 
 ### 광고 정보 업데이트 - 정상
-PATCH localhost:8080/ap1/v1/ad/{{adId}}/info
+PATCH localhost:8080/api/v1/ad/{{adId}}/info
 Content-Type: application/json
 
 {
@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### 광고 정보 업데이트 - 정상 - 설명 누락
-PATCH localhost:8080/ap1/v1/ad/{{adId}}/info
+PATCH localhost:8080/api/v1/ad/{{adId}}/info
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### 광고 정보 업데이트 - 없는 광고
-PATCH localhost:8080/ap1/v1/ad/{{noExist}}/info
+PATCH localhost:8080/api/v1/ad/{{noExist}}/info
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 }
 
 ### 광고 정보 업데이트 - 제목 공란
-PATCH localhost:8080/ap1/v1/ad/{{adId}}/info
+PATCH localhost:8080/api/v1/ad/{{adId}}/info
 Content-Type: application/json
 
 {
@@ -37,7 +37,7 @@ Content-Type: application/json
 }
 
 ### 광고 정보 업데이트 - 제목 누락
-PATCH localhost:8080/ap1/v1/ad/{{adId}}/info
+PATCH localhost:8080/api/v1/ad/{{adId}}/info
 Content-Type: application/json
 
 {
@@ -45,7 +45,7 @@ Content-Type: application/json
 }
 
 ### 광고 정보 업데이트 - 잘못된 바디
-PATCH localhost:8080/ap1/v1/ad/{{adId}}/info
+PATCH localhost:8080/api/v1/ad/{{adId}}/info
 Content-Type: application/json
 
 {

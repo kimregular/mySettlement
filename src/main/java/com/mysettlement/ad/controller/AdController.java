@@ -15,7 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/ad")
+@RequestMapping("/api/ad/v1")
 @RequiredArgsConstructor
 public class AdController {
 

@@ -1,5 +1,5 @@
 ### 광고 등록 요청
-POST localhost:8080/api/ad
+POST localhost:8080/ap1/v1/ad
 Content-Type: application/json
 
 {

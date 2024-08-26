@@ -1,4 +1,4 @@
-package com.mysettlement.domain.ad.request;
+package com.mysettlement.domain.ad.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 

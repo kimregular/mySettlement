@@ -1,6 +1,6 @@
-package com.mysettlement.global.globalResponse;
+package com.mysettlement.global.response;
 
-import com.mysettlement.global.globalException.MySettlementException;
+import com.mysettlement.global.exception.MySettlementException;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.mysettlement.domain.video.request;
+package com.mysettlement.domain.video.dto.request;
 
 import com.mysettlement.domain.video.entity.VideoStatus;
 import jakarta.validation.constraints.NotNull;

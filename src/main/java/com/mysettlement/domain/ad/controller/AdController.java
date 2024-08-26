@@ -1,11 +1,11 @@
 package com.mysettlement.domain.ad.controller;
 
-import com.mysettlement.domain.ad.request.AdStatusUpdateReqeustDto;
-import com.mysettlement.domain.ad.request.AdUpdateReqeustDto;
-import com.mysettlement.domain.ad.request.AdUploadRequestDto;
-import com.mysettlement.domain.ad.response.AdResponseDto;
+import com.mysettlement.domain.ad.dto.request.AdStatusUpdateReqeustDto;
+import com.mysettlement.domain.ad.dto.request.AdUpdateReqeustDto;
+import com.mysettlement.domain.ad.dto.request.AdUploadRequestDto;
+import com.mysettlement.domain.ad.dto.response.AdResponseDto;
 import com.mysettlement.domain.ad.service.AdService;
-import com.mysettlement.global.globalResponse.MySettlementGlobalResponse;
+import com.mysettlement.global.response.MySettlementGlobalResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

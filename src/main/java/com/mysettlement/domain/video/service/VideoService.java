@@ -1,9 +1,9 @@
 package com.mysettlement.domain.video.service;
 
-import com.mysettlement.domain.video.request.VideoStatusChangeRequestDto;
-import com.mysettlement.domain.video.request.VideoUpdateRequestDto;
-import com.mysettlement.domain.video.request.VideoUploadRequestDto;
-import com.mysettlement.domain.video.response.VideoResponseDto;
+import com.mysettlement.domain.video.dto.request.VideoStatusChangeRequestDto;
+import com.mysettlement.domain.video.dto.request.VideoUpdateRequestDto;
+import com.mysettlement.domain.video.dto.request.VideoUploadRequestDto;
+import com.mysettlement.domain.video.dto.response.VideoResponseDto;
 
 import java.util.List;
 

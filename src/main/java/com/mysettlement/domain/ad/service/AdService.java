@@ -1,9 +1,9 @@
 package com.mysettlement.domain.ad.service;
 
-import com.mysettlement.domain.ad.request.AdStatusUpdateReqeustDto;
-import com.mysettlement.domain.ad.request.AdUpdateReqeustDto;
-import com.mysettlement.domain.ad.request.AdUploadRequestDto;
-import com.mysettlement.domain.ad.response.AdResponseDto;
+import com.mysettlement.domain.ad.dto.request.AdStatusUpdateReqeustDto;
+import com.mysettlement.domain.ad.dto.request.AdUpdateReqeustDto;
+import com.mysettlement.domain.ad.dto.request.AdUploadRequestDto;
+import com.mysettlement.domain.ad.dto.response.AdResponseDto;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly = true)

@@ -1,7 +1,7 @@
-package com.mysettlement.domain.video.response;
+package com.mysettlement.domain.video.dto.response;
 
 import com.mysettlement.domain.user.entity.User;
-import com.mysettlement.domain.user.response.UserResponseDto;
+import com.mysettlement.domain.user.dto.response.UserResponseDto;
 import com.mysettlement.domain.video.entity.Video;
 import lombok.Builder;
 import lombok.Getter;

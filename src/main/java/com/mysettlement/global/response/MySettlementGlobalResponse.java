@@ -1,4 +1,4 @@
-package com.mysettlement.global.globalResponse;
+package com.mysettlement.global.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -8,10 +8,10 @@ import com.mysettlement.domain.video.exception.InvalidVideoUpdateRequestExceptio
 import com.mysettlement.domain.video.exception.NoVideoFoundException;
 import com.mysettlement.domain.video.exception.DefaultRoleRequiredException;
 import com.mysettlement.domain.video.repository.VideoRepository;
-import com.mysettlement.domain.video.request.VideoStatusChangeRequestDto;
-import com.mysettlement.domain.video.request.VideoUpdateRequestDto;
-import com.mysettlement.domain.video.request.VideoUploadRequestDto;
-import com.mysettlement.domain.video.response.VideoResponseDto;
+import com.mysettlement.domain.video.dto.request.VideoStatusChangeRequestDto;
+import com.mysettlement.domain.video.dto.request.VideoUpdateRequestDto;
+import com.mysettlement.domain.video.dto.request.VideoUploadRequestDto;
+import com.mysettlement.domain.video.dto.response.VideoResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,8 +1,7 @@
 package com.mysettlement.domain.video.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysettlement.domain.video.controller.VideoController;
-import com.mysettlement.domain.video.request.VideoUploadRequestDto;
+import com.mysettlement.domain.video.dto.request.VideoUploadRequestDto;
 import com.mysettlement.domain.video.service.VideoService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

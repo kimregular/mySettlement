@@ -1,4 +1,4 @@
-package com.mysettlement.domain.video.request;
+package com.mysettlement.domain.video.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,8 +1,8 @@
 package com.mysettlement.domain.ad.entity;
 
-import com.mysettlement.domain.ad.request.AdStatusUpdateReqeustDto;
-import com.mysettlement.domain.ad.request.AdUpdateReqeustDto;
-import com.mysettlement.domain.ad.request.AdUploadRequestDto;
+import com.mysettlement.domain.ad.dto.request.AdStatusUpdateReqeustDto;
+import com.mysettlement.domain.ad.dto.request.AdUpdateReqeustDto;
+import com.mysettlement.domain.ad.dto.request.AdUploadRequestDto;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;

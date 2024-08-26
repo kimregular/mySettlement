@@ -1,4 +1,4 @@
-package com.mysettlement.domain.user.request;
+package com.mysettlement.domain.user.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

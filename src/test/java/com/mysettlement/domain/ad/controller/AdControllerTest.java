@@ -1,8 +1,7 @@
 package com.mysettlement.domain.ad.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysettlement.domain.ad.controller.AdController;
-import com.mysettlement.domain.ad.request.AdUploadRequestDto;
+import com.mysettlement.domain.ad.dto.request.AdUploadRequestDto;
 import com.mysettlement.domain.ad.service.AdService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

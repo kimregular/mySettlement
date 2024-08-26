@@ -1,4 +1,4 @@
-package com.mysettlement.domain.ad.request;
+package com.mysettlement.domain.ad.dto.request;
 
 import com.mysettlement.domain.ad.entity.AdStatus;
 import jakarta.validation.constraints.NotNull;

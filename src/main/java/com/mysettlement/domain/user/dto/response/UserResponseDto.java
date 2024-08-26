@@ -1,4 +1,4 @@
-package com.mysettlement.domain.user.response;
+package com.mysettlement.domain.user.dto.response;
 
 import com.mysettlement.domain.user.entity.User;
 import lombok.Builder;

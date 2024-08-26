@@ -1,6 +1,6 @@
 package com.mysettlement.domain.ad.exception;
 
-import com.mysettlement.global.globalException.MySettlementException;
+import com.mysettlement.global.exception.MySettlementException;
 import org.springframework.http.HttpStatus;
 
 import static com.mysettlement.domain.ad.exception.AdExceptionConstants.INVALID_AD_UPDATE_REQUEST_EXCEPTION;

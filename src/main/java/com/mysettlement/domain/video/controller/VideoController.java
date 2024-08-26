@@ -1,10 +1,10 @@
 package com.mysettlement.domain.video.controller;
 
-import com.mysettlement.global.globalResponse.MySettlementGlobalResponse;
-import com.mysettlement.domain.video.request.VideoStatusChangeRequestDto;
-import com.mysettlement.domain.video.request.VideoUpdateRequestDto;
-import com.mysettlement.domain.video.request.VideoUploadRequestDto;
-import com.mysettlement.domain.video.response.VideoResponseDto;
+import com.mysettlement.global.response.MySettlementGlobalResponse;
+import com.mysettlement.domain.video.dto.request.VideoStatusChangeRequestDto;
+import com.mysettlement.domain.video.dto.request.VideoUpdateRequestDto;
+import com.mysettlement.domain.video.dto.request.VideoUploadRequestDto;
+import com.mysettlement.domain.video.dto.response.VideoResponseDto;
 import com.mysettlement.domain.video.service.VideoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

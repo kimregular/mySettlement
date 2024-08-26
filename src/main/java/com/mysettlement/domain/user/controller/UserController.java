@@ -1,9 +1,9 @@
 package com.mysettlement.domain.user.controller;
 
-import com.mysettlement.global.globalResponse.MySettlementGlobalResponse;
+import com.mysettlement.global.response.MySettlementGlobalResponse;
 import com.mysettlement.domain.user.entity.UserRole;
-import com.mysettlement.domain.user.request.UserSigninRequestDto;
-import com.mysettlement.domain.user.response.UserResponseDto;
+import com.mysettlement.domain.user.dto.request.UserSigninRequestDto;
+import com.mysettlement.domain.user.dto.response.UserResponseDto;
 import com.mysettlement.domain.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

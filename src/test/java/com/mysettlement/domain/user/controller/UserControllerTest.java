@@ -1,8 +1,7 @@
 package com.mysettlement.domain.user.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysettlement.domain.user.controller.UserController;
-import com.mysettlement.domain.user.request.UserSigninRequestDto;
+import com.mysettlement.domain.user.dto.request.UserSigninRequestDto;
 import com.mysettlement.domain.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

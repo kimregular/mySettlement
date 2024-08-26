@@ -1,4 +1,4 @@
-package com.mysettlement.domain.video.request;
+package com.mysettlement.domain.video.dto.request;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;

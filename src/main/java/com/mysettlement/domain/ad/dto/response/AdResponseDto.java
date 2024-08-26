@@ -1,4 +1,4 @@
-package com.mysettlement.domain.ad.response;
+package com.mysettlement.domain.ad.dto.response;
 
 import com.mysettlement.domain.ad.entity.Ad;
 import lombok.Builder;

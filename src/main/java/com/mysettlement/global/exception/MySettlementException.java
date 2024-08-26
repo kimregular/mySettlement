@@ -1,4 +1,4 @@
-package com.mysettlement.global.globalException;
+package com.mysettlement.global.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

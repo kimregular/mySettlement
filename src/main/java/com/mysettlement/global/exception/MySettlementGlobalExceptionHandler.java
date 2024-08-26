@@ -1,6 +1,6 @@
-package com.mysettlement.global.globalException;
+package com.mysettlement.global.exception;
 
-import com.mysettlement.global.globalResponse.MySettlementGlobalErrorResponse;
+import com.mysettlement.global.response.MySettlementGlobalErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

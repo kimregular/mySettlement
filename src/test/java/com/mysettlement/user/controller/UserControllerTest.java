@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static com.mysettlement.user.exception.UserExceptionConstants.INVALID_SIGNININ_REQUEST_EXCEPTION;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -63,7 +62,7 @@ class UserControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value(INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage()))
+                .andExpect(jsonPath("$.message").value("유효하지 않은 요청입니다."))
                 .andExpect(jsonPath("$.validation.name").value("이름은 필수값입니다."));
     }
 
@@ -81,7 +80,7 @@ class UserControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value(INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage()))
+                .andExpect(jsonPath("$.message").value("유효하지 않은 요청입니다."))
                 .andExpect(jsonPath("$.validation.email").value("이메일은 필수값입니다."));
     }
 
@@ -99,7 +98,7 @@ class UserControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value(INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage()))
+                .andExpect(jsonPath("$.message").value("유효하지 않은 요청입니다."))
                 .andExpect(jsonPath("$.validation.email").value("이메일 형식이 아닙니다."));
     }
 
@@ -117,7 +116,7 @@ class UserControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value(INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage()))
+                .andExpect(jsonPath("$.message").value("유효하지 않은 요청입니다."))
                 .andExpect(jsonPath("$.validation.password").value("비밀번호는 필수값입니다."));
     }
 
@@ -135,7 +134,7 @@ class UserControllerTest {
         mockMvc.perform(request)
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
-                .andExpect(jsonPath("$.message").value(INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage()))
+                .andExpect(jsonPath("$.message").value("유효하지 않은 요청입니다."))
                 .andExpect(jsonPath("$.validation.name").value("이름은 필수값입니다."))
                 .andExpect(jsonPath("$.validation.email").value("이메일 형식이 아닙니다."))
                 .andExpect(jsonPath("$.validation.password").value("비밀번호는 필수값입니다."));

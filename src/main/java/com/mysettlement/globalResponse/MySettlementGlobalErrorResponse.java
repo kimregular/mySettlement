@@ -1,10 +1,12 @@
 package com.mysettlement.globalResponse;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.mysettlement.globalException.MySettlementException;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,19 +27,26 @@ public class MySettlementGlobalErrorResponse {
         this.validation = validation != null ? validation : new HashMap<>();
     }
 
-    public static MySettlementGlobalErrorResponse of(JsonMappingException e) {
-        return MySettlementGlobalErrorResponse.builder()
-                .status(HttpStatus.BAD_REQUEST)
-                .message("유효하지 않은 요청입니다.")
-                .validation(null)
-                .build();
-    }
-
     public static MySettlementGlobalErrorResponse of(MySettlementException e) {
         return MySettlementGlobalErrorResponse.builder()
                 .status(e.getStatusCode())
                 .message(e.getMessage())
                 .validation(e.getValidation())
+                .build();
+    }
+
+    public static MySettlementGlobalErrorResponse of(MethodArgumentNotValidException e) {
+        Map<String, String> errorField = new HashMap<>();
+        for (ObjectError allError : e.getAllErrors()) {
+            String fieldName = ((FieldError) allError).getField();
+            String errorMessage = allError.getDefaultMessage();
+            errorField.put(fieldName, errorMessage);
+        }
+
+        return MySettlementGlobalErrorResponse.builder()
+                .status(HttpStatus.BAD_REQUEST)
+                .message("유효하지 않은 요청입니다.")
+                .validation(errorField)
                 .build();
     }
 

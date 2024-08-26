@@ -2,10 +2,8 @@ package com.mysettlement.ad.exception;
 
 import com.mysettlement.globalException.MySettlementException;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 
-import static com.mysettlement.ad.exception.AdExceptionConstants.*;
+import static com.mysettlement.ad.exception.AdExceptionConstants.INVALID_AD_UPDATE_REQUEST_EXCEPTION;
 
 public class InvalidAdUpdateRequestException extends MySettlementException {
 
@@ -13,13 +11,6 @@ public class InvalidAdUpdateRequestException extends MySettlementException {
 
     public InvalidAdUpdateRequestException() {
         super(MESSAGE);
-    }
-
-    public InvalidAdUpdateRequestException(BindingResult errors) {
-        super(MESSAGE);
-        for (FieldError fieldError : errors.getFieldErrors()) {
-            addValidation(fieldError.getField(), fieldError.getDefaultMessage());
-        }
     }
 
     @Override

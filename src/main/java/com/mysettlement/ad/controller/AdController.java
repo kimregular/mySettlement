@@ -1,7 +1,5 @@
 package com.mysettlement.ad.controller;
 
-import com.mysettlement.ad.exception.InvalidAdUpdateRequestException;
-import com.mysettlement.ad.exception.InvalidAdUploadRequestException;
 import com.mysettlement.ad.request.AdStatusUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUpdateReqeustDto;
 import com.mysettlement.ad.request.AdUploadRequestDto;
@@ -11,7 +9,6 @@ import com.mysettlement.globalResponse.MySettlementGlobalResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,24 +24,19 @@ public class AdController {
     }
 
     @PostMapping
-    public MySettlementGlobalResponse<AdResponseDto> uploadAd(@Valid @RequestBody AdUploadRequestDto adUploadRequestDto, BindingResult errors) {
-        if (errors.hasErrors()) throw new InvalidAdUploadRequestException(errors);
+    public MySettlementGlobalResponse<AdResponseDto> uploadAd(@Valid @RequestBody AdUploadRequestDto adUploadRequestDto) {
         return MySettlementGlobalResponse.of(HttpStatus.OK, adService.uploadAd(adUploadRequestDto));
     }
 
     @PatchMapping("/{adId}/status")
     public MySettlementGlobalResponse<AdResponseDto> updateAd(@PathVariable Long adId,
-                                                              @Valid @RequestBody AdStatusUpdateReqeustDto adStatusUpdateReqeustDto,
-                                                              BindingResult errors) {
-        if (errors.hasErrors()) throw new InvalidAdUpdateRequestException(errors);
+                                                              @Valid @RequestBody AdStatusUpdateReqeustDto adStatusUpdateReqeustDto) {
         return MySettlementGlobalResponse.success(adService.changeStatus(adId, adStatusUpdateReqeustDto));
     }
 
     @PatchMapping("/{adId}/info")
     public MySettlementGlobalResponse<AdResponseDto> updateAd(@PathVariable Long adId,
-                                                              @Valid @RequestBody AdUpdateReqeustDto adUpdateReqeustDto,
-                                                              BindingResult errors) {
-        if(errors.hasErrors()) throw new InvalidAdUploadRequestException(errors);
+                                                              @Valid @RequestBody AdUpdateReqeustDto adUpdateReqeustDto) {
         return MySettlementGlobalResponse.success(adService.changeInfo(adId, adUpdateReqeustDto));
     }
 }

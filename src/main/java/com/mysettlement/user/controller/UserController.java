@@ -2,14 +2,12 @@ package com.mysettlement.user.controller;
 
 import com.mysettlement.globalResponse.MySettlementGlobalResponse;
 import com.mysettlement.user.entity.UserRole;
-import com.mysettlement.user.exception.InvalidSigninRequestException;
 import com.mysettlement.user.request.UserSigninRequestDto;
 import com.mysettlement.user.response.UserResponseDto;
 import com.mysettlement.user.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -22,8 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public MySettlementGlobalResponse<UserResponseDto> signsin(@RequestBody @Valid UserSigninRequestDto userSigninRequestDto, BindingResult errors) {
-        if(errors.hasErrors()) throw new InvalidSigninRequestException(errors);
+    public MySettlementGlobalResponse<UserResponseDto> signsin(@RequestBody @Valid UserSigninRequestDto userSigninRequestDto) {
         return MySettlementGlobalResponse.success(userService.signinUser(userSigninRequestDto));
     }
 

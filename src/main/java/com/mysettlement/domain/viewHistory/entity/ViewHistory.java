@@ -22,12 +22,12 @@ public class ViewHistory {
     @Column(name = "view_history_id")
     private Long id;
 
-    @OneToOne(fetch = LAZY)
-    @Column(name = "user_id")
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(fetch = LAZY)
-    @Column(name = "video_id")
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "video_id")
     private Video video;
 
     @Column(name = "view_date")

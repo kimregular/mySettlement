@@ -21,7 +21,7 @@ public class MySettlementGlobalErrorResponse {
     private final Map<String, String> validation;
 
     @Builder(access = PRIVATE)
-    public MySettlementGlobalErrorResponse(HttpStatus status, String message, Map<String, String> validation) {
+    private MySettlementGlobalErrorResponse(HttpStatus status, String message, Map<String, String> validation) {
         this.status = status;
         this.message = message;
         this.validation = validation != null ? validation : new HashMap<>();
@@ -36,18 +36,21 @@ public class MySettlementGlobalErrorResponse {
     }
 
     public static MySettlementGlobalErrorResponse of(MethodArgumentNotValidException e) {
+        return MySettlementGlobalErrorResponse.builder()
+                .status(HttpStatus.BAD_REQUEST)
+                .message("유효하지 않은 요청입니다.")
+                .validation(getErrorField(e))
+                .build();
+    }
+
+    private static Map<String, String> getErrorField(MethodArgumentNotValidException e) {
         Map<String, String> errorField = new HashMap<>();
         for (ObjectError allError : e.getAllErrors()) {
             String fieldName = ((FieldError) allError).getField();
             String errorMessage = allError.getDefaultMessage();
             errorField.put(fieldName, errorMessage);
         }
-
-        return MySettlementGlobalErrorResponse.builder()
-                .status(HttpStatus.BAD_REQUEST)
-                .message("유효하지 않은 요청입니다.")
-                .validation(errorField)
-                .build();
+        return errorField;
     }
 
     public void addValidation(String fieldName, String errorMessage) {

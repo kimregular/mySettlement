@@ -17,7 +17,6 @@ public class MySettlementGlobalExceptionHandler {
 
     @ExceptionHandler(JsonMappingException.class)
     public ResponseEntity<MySettlementGlobalErrorResponse> handleJsonMappingException(JsonMappingException e) {
-
         return new ResponseEntity<>(MySettlementGlobalErrorResponse.of(e), HttpStatus.BAD_REQUEST);
     }
 }

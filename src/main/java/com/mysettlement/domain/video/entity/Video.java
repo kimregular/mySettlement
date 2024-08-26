@@ -76,4 +76,8 @@ public class Video {
         this.videoTitle = videoUpdateRequestDto.title();
         this.videoDesc = videoUpdateRequestDto.desc();
     }
+
+    public void viewUpdate() {
+        this.videoView++;
+    }
 }

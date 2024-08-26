@@ -2,20 +2,15 @@ package com.mysettlement.user.exception;
 
 import com.mysettlement.globalException.MySettlementException;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 
-import static com.mysettlement.user.exception.UserExceptionConstants.*;
+import static com.mysettlement.user.exception.UserExceptionConstants.INVALID_SIGNININ_REQUEST_EXCEPTION;
 
 public class InvalidSigninRequestException extends MySettlementException {
 
     private static final String MESSAGE = INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage();
 
-    public InvalidSigninRequestException(BindingResult errors) {
+    public InvalidSigninRequestException() {
         super(MESSAGE);
-        for (FieldError fieldError : errors.getFieldErrors()) {
-            addValidation(fieldError.getField(), fieldError.getDefaultMessage());
-        }
     }
 
     @Override

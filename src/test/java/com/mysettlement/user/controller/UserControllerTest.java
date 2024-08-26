@@ -120,4 +120,25 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.message").value(INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage()))
                 .andExpect(jsonPath("$.validation.password").value("비밀번호는 필수값입니다."));
     }
+
+    @Test
+    @DisplayName("이름과 이메일, 비밀번호가 없으면 회원가입이 불가능하다.")
+    void testSigninWithoutNameAndEmailAndPassword() throws Exception {
+        // given
+        UserSigninRequestDto userSigninRequestDto = new UserSigninRequestDto("", "newSignintest.com", "");
+        String json = objectMapper.writeValueAsString(userSigninRequestDto);
+        // when
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/api/v1/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json);
+        // then
+        mockMvc.perform(request)
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.message").value(INVALID_SIGNININ_REQUEST_EXCEPTION.getMessage()))
+                .andExpect(jsonPath("$.validation.name").value("이름은 필수값입니다."))
+                .andExpect(jsonPath("$.validation.email").value("이메일 형식이 아닙니다."))
+                .andExpect(jsonPath("$.validation.password").value("비밀번호는 필수값입니다."));
+    }
+
 }

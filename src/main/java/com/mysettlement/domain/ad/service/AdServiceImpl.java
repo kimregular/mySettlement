@@ -8,9 +8,12 @@ import com.mysettlement.domain.ad.dto.request.AdStatusUpdateReqeustDto;
 import com.mysettlement.domain.ad.dto.request.AdUpdateReqeustDto;
 import com.mysettlement.domain.ad.dto.request.AdUploadRequestDto;
 import com.mysettlement.domain.ad.dto.response.AdResponseDto;
+import com.mysettlement.global.util.AdSelecter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static com.mysettlement.domain.ad.entity.AdStatus.isAvailableStatus;
 
@@ -20,9 +23,10 @@ import static com.mysettlement.domain.ad.entity.AdStatus.isAvailableStatus;
 public class AdServiceImpl implements AdService {
 
     private final AdRepository adRepository;
+    private final AdSelecter adSelecter;
 
     @Override
-    public AdResponseDto findAdById(Long adId) {
+    public AdResponseDto getAdById(Long adId) {
         Ad foundAd = adRepository.findById(adId).orElseThrow(NoAdFoundException::new);
         return AdResponseDto.of(foundAd);
     }
@@ -51,5 +55,10 @@ public class AdServiceImpl implements AdService {
         Ad foundAd = adRepository.findById(adId).orElseThrow(NoAdFoundException::new);
         foundAd.update(adUpdateReqeustDto);
         return AdResponseDto.of(foundAd);
+    }
+
+    @Override
+    public List<Long> getAdsForVideos(Long videoLength) {
+        return adRepository.findAdsForRange(adSelecter.getNumOfAds(videoLength)).stream().map(Ad::getId).toList();
     }
 }

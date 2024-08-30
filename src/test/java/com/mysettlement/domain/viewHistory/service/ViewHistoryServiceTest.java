@@ -27,7 +27,6 @@ class ViewHistoryServiceTest {
 
     @Autowired
     private ViewHistoryServiceImpl viewHistoryService;
-
     @Autowired
     private ViewHistoryRepository viewHistoryRepository;
     @Autowired
@@ -49,7 +48,7 @@ class ViewHistoryServiceTest {
         viewHistoryService.viewVideo(savedVideo.getId(), viewVideoRequestDto);
         Video foundVideo = videoRepository.findById(savedVideo.getId()).get();
         // then
-        assertThat(capturedOutput.toString()).contains("no view history updated!");
+        assertThat(capturedOutput.toString()).contains("ViewHistory has been updated!");
         assertThat(foundVideo.getVideoView()).isEqualTo(videoView + 1);
     }
 

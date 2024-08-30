@@ -16,10 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
-@Service
 @Slf4j
 @Transactional
 @RequiredArgsConstructor
+@Service
 public class ViewHistoryServiceImpl {
 
     private final ViewHistoryRepository viewHistoryRepository;
@@ -30,20 +30,16 @@ public class ViewHistoryServiceImpl {
         User foundUser = userRepository.findById(viewVideoRequestDto.userId()).orElseThrow(NoUserFoundException::new);
         Video foundVideo = videoRepository.findById(videoId).orElseThrow(NoVideoFoundException::new);
         boolean hasViewHistory = hasViewHistory(foundUser, foundVideo);
-        ViewHistory viewHistory = recorViewHistory(foundUser, foundVideo, viewVideoRequestDto.viewDate(), hasViewHistory);
+        ViewHistory viewHistory = recordViewHistory(foundUser, foundVideo, viewVideoRequestDto.viewDate(), hasViewHistory);
         return viewHistoryRepository.save(viewHistory);
     }
 
-    private ViewHistory recorViewHistory(User user, Video video, LocalDateTime viewDate, boolean hasViewHistory) {
+    private ViewHistory recordViewHistory(User user, Video video, LocalDateTime viewDate, boolean hasViewHistory) {
         if (!hasViewHistory) {
-            log.info("no view history updated!");
+            log.info("ViewHistory has been updated!");
             video.viewUpdate();
         }
-        return ViewHistory.builder()
-                .user(user)
-                .video(video)
-                .viewDate(viewDate)
-                .build();
+        return ViewHistory.builder().user(user).video(video).viewDate(viewDate).build();
     }
 
     private boolean hasViewHistory(User user, Video video) {

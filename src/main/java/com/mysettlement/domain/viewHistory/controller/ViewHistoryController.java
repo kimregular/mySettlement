@@ -2,7 +2,7 @@ package com.mysettlement.domain.viewHistory.controller;
 
 import com.mysettlement.domain.viewHistory.dto.response.ViewHistoryResponseDto;
 import com.mysettlement.domain.viewHistory.dto.request.ViewVideoRequestDto;
-import com.mysettlement.domain.viewHistory.service.ViewHistoryServiceImpl;
+import com.mysettlement.domain.viewHistory.service.ViewHistoryService;
 import com.mysettlement.global.response.MySettlementGlobalResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ViewHistoryController {
 
-    private final ViewHistoryServiceImpl viewHistoryService;
+    private final ViewHistoryService viewHistoryService;
 
     @PostMapping("/{videoId}")
     public MySettlementGlobalResponse<ViewHistoryResponseDto> viewVideo(@PathVariable Long videoId,

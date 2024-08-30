@@ -23,13 +23,14 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class ViewHistoryServiceImpl {
+public class ViewHistoryServiceImpl implements ViewHistoryService {
 
     private final ViewHistoryRepository viewHistoryRepository;
     private final UserRepository userRepository;
     private final VideoRepository videoRepository;
     private final AdServiceImpl adServiceImpl;
 
+    @Override
     public ViewHistoryResponseDto viewVideo(Long videoId, ViewVideoRequestDto viewVideoRequestDto) {
         User foundUser = findUser(viewVideoRequestDto);
         Video foundVideo = findVideo(videoId);

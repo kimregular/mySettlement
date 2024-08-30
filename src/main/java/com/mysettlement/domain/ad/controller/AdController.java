@@ -20,7 +20,7 @@ public class AdController {
 
     @GetMapping("/{adId}")
     public MySettlementGlobalResponse<AdResponseDto> searchAdWith(@PathVariable Long adId) {
-        return MySettlementGlobalResponse.success(adService.findAdById(adId));
+        return MySettlementGlobalResponse.success(adService.getAdById(adId));
     }
 
     @PostMapping

@@ -2,7 +2,7 @@ package com.mysettlement.domain.viewHistory.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysettlement.domain.viewHistory.dto.request.ViewVideoRequestDto;
-import com.mysettlement.domain.viewHistory.service.ViewHistoryServiceImpl;
+import com.mysettlement.domain.viewHistory.service.ViewHistoryService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ class ViewHistoryControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    private ViewHistoryServiceImpl viewHistoryService;
+    private ViewHistoryService viewHistoryService;
 
     @Test
     @DisplayName("비디오 시청 테스트")

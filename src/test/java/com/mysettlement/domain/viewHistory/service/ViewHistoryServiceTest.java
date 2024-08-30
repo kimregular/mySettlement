@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class ViewHistoryServiceTest {
 
     @Autowired
-    private ViewHistoryServiceImpl viewHistoryService;
+    private ViewHistoryService viewHistoryService;
     @Autowired
     private ViewHistoryRepository viewHistoryRepository;
     @Autowired

@@ -59,6 +59,12 @@ public class AdServiceImpl implements AdService {
 
     @Override
     public List<Long> getAdsForVideos(Long videoLength) {
-        return adRepository.findAdsForRange(adSelecter.getNumOfAds(videoLength)).stream().map(Ad::getId).toList();
+        List<Ad> adsForRange = adRepository.findAdsForRange(adSelecter.getNumOfAds(videoLength));
+        for (Ad ad : adsForRange) {
+            // 프론트가 없다는 가정하에 들어간 로직
+            // 프론트 로직이 구현된다면 제거해야함!
+            ad.viewUpdate();
+        }
+        return adsForRange.stream().map(Ad::getId).toList();
     }
 }

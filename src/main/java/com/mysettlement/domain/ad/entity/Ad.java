@@ -66,4 +66,8 @@ public class Ad {
         this.adTitle = adUpdateReqeustDto.title();
         this.adDesc = adUpdateReqeustDto.desc();
     }
+
+    public void viewUpdate() {
+        this.adView++;
+    }
 }
